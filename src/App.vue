@@ -1,32 +1,58 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+  <v-app>
+    <div class="alerts">
+      <ErrorAlert ref="errorAlert"></ErrorAlert>
     </div>
-    <router-view/>
-  </div>
+    <v-main>
+      <v-card
+        class="mx-auto my-12"
+        max-width="600"
+      >
+        <v-card-title>
+          Открытие окна с сообщением об ошибке.
+        </v-card-title>
+        <v-card-text>
+          <v-text-field
+            v-model="errorMessage"
+            label="Сообщение об ошибке"
+          >
+          </v-text-field>
+        </v-card-text>
+        <v-card-actions>
+          <v-btn
+            depressed
+            color="error"
+            class="mx-auto my-12"
+            @click="showAlert"
+          >
+           Raise Error
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-main>
+  </v-app>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import ErrorAlert from '@/components/ErrorAlert';
+import { ON_APP_ERROR } from '@/events/types';
+import eventBus from '@/events/eventBus';
 
-#nav {
-  padding: 30px;
-}
+export default {
+  name: 'App',
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
+  components: {
+    'ErrorAlert': ErrorAlert
+  },
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
-</style>
+  data: () => ({
+    errorMessage: '',
+  }),
+  methods: {
+    showAlert() {
+      eventBus.$emit(ON_APP_ERROR, {'message': this.errorMessage});
+      console.log(this.errorMessage)
+    }
+  }
+};
+</script>
