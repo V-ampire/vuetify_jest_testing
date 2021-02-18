@@ -22,7 +22,7 @@
           <v-btn
             depressed
             color="error"
-            class="mx-auto my-12"
+            class="mx-auto my-12 errorBtn"
             @click="showAlert"
           >
            Raise Error
@@ -36,7 +36,6 @@
 <script>
 import ErrorAlert from '@/components/ErrorAlert';
 import { ON_APP_ERROR } from '@/events/types';
-import eventBus from '@/events/eventBus';
 
 export default {
   name: 'App',
@@ -50,8 +49,7 @@ export default {
   }),
   methods: {
     showAlert() {
-      eventBus.$emit(ON_APP_ERROR, {'message': this.errorMessage});
-      console.log(this.errorMessage)
+      this.$eventBus.$emit(ON_APP_ERROR, this.errorMessage);
     }
   }
 };

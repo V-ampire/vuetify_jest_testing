@@ -10,7 +10,6 @@
 
 <script>
 import { ON_APP_ERROR } from '@/events/types';
-import eventBus from '@/events/eventBus';
 
 export default {
     data () {
@@ -23,13 +22,10 @@ export default {
     mounted: function() {
         var self = this;
         // При монтировании вешаем обработчик события ошибки
-        eventBus.$on(ON_APP_ERROR, (errorData) => {
-            self.open(errorData.message)
-        });
+        this.$eventBus.$on(ON_APP_ERROR, this.open);
     },
     methods: {
         open (message) {
-            console.log(message);
             this.message = message;
             this.showAlert = true;
         }

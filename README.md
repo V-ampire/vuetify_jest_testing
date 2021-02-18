@@ -1,24 +1,10 @@
-# app
+## Тест для компоненты ErrorAlert
 
-## Project setup
-```
-npm install
-```
+- Тест установки обработчика при монтировании
+- Тест метода `open`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Тест для появления окна с ошибкой.
 
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Тест нажатия на кнопку
+- Тест сообщения
