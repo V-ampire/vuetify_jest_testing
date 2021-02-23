@@ -20,7 +20,6 @@ export default {
         }
     },
     mounted: function() {
-        var self = this;
         // При монтировании вешаем обработчик события ошибки
         this.$eventBus.$on(ON_APP_ERROR, this.open);
     },
